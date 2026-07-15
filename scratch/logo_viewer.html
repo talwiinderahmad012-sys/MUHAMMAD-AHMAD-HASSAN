@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEXFRAME Flat Logo Viewer</title>
+  <style>
+    body {
+      background-color: #07090D;
+      color: #E2E8F0;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      letter-spacing: 0.05em;
+      color: #8FA3AE;
+    }
+    .logo-container {
+      background-color: #0B0E14;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    .logo-card {
+      text-align: center;
+    }
+    .logo-title {
+      font-size: 14px;
+      font-family: monospace;
+      color: #5EEAD4;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    img {
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>HEXFRAME Logo Prototypes</h1>
+  <div class="logo-container">
+    <div class="logo-card">
+      <div class="logo-title">Option A: Geometric Sans-serif (Space Grotesk)</div>
+      <img src="../src/assets/images/hexframe_logo_flat.svg" alt="HEXFRAME Geometric Logo" width="540" height="160">
+    </div>
+    <div class="logo-card">
+      <div class="logo-title">Option B: Monospace (JetBrains Mono)</div>
+      <img src="../src/assets/images/hexframe_logo_flat_mono.svg" alt="HEXFRAME Monospace Logo" width="540" height="160">
+    </div>
+  </div>
+</body>
+</html>
