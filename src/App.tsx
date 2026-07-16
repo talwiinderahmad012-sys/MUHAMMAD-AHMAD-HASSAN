@@ -13,16 +13,12 @@ import SkillsGrid from './components/SkillsGrid';
 import ServicesList from './components/ServicesList';
 import Contact from './components/Contact';
 import ConnectModal from './components/ConnectModal';
-import SaasMetricsCard from './components/SaasMetricsCard';
-import BrandingPaletteTool from './components/BrandingPaletteTool';
-import InteractiveLutGrader from './components/InteractiveLutGrader';
-import TechInventory from './components/TechInventory';
 
 // Icons
 import { Terminal, Settings, Sliders, ExternalLink, Menu, X, Sparkles } from 'lucide-react';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'timeline' | 'lab' | 'journal' | 'services'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'timeline' | 'journal' | 'services'>('home');
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedClipId, setSelectedClipId] = useState<string | null>('dev-1');
@@ -145,21 +141,11 @@ export default function App() {
             )}
           </button>
           <button
-            onClick={() => setCurrentPage('lab')}
-            aria-current={currentPage === 'lab' ? 'page' : undefined}
-            className={`cursor-pointer hover:text-cyan-accent transition-all relative ${currentPage === 'lab' ? 'text-cyan-accent font-bold' : 'text-white/50'}`}
-          >
-            02 / Lab
-            {currentPage === 'lab' && (
-              <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-cyan-accent" />
-            )}
-          </button>
-          <button
             onClick={() => setCurrentPage('journal')}
             aria-current={currentPage === 'journal' ? 'page' : undefined}
             className={`cursor-pointer hover:text-cyan-accent transition-all relative ${currentPage === 'journal' ? 'text-cyan-accent font-bold' : 'text-white/50'}`}
           >
-            03 / Journal
+            02 / Journal
             {currentPage === 'journal' && (
               <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-cyan-accent" />
             )}
@@ -169,7 +155,7 @@ export default function App() {
             aria-current={currentPage === 'services' ? 'page' : undefined}
             className={`cursor-pointer hover:text-cyan-accent transition-all relative ${currentPage === 'services' ? 'text-cyan-accent font-bold' : 'text-white/50'}`}
           >
-            04 / Services
+            03 / Services
             {currentPage === 'services' && (
               <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-cyan-accent" />
             )}
@@ -224,25 +210,18 @@ export default function App() {
                 01 / Timeline
               </button>
               <button
-                onClick={() => { setCurrentPage('lab'); setIsMobileMenuOpen(false); }}
-                aria-current={currentPage === 'lab' ? 'page' : undefined}
-                className={`block w-full text-left py-2 text-[11px] font-mono uppercase tracking-[0.2em] transition-all ${currentPage === 'lab' ? 'text-cyan-accent font-bold' : 'text-white/50 hover:text-white'}`}
-              >
-                02 / Lab
-              </button>
-              <button
                 onClick={() => { setCurrentPage('journal'); setIsMobileMenuOpen(false); }}
                 aria-current={currentPage === 'journal' ? 'page' : undefined}
                 className={`block w-full text-left py-2 text-[11px] font-mono uppercase tracking-[0.2em] transition-all ${currentPage === 'journal' ? 'text-cyan-accent font-bold' : 'text-white/50 hover:text-white'}`}
               >
-                03 / Journal
+                02 / Journal
               </button>
               <button
                 onClick={() => { setCurrentPage('services'); setIsMobileMenuOpen(false); }}
                 aria-current={currentPage === 'services' ? 'page' : undefined}
                 className={`block w-full text-left py-2 text-[11px] font-mono uppercase tracking-[0.2em] transition-all ${currentPage === 'services' ? 'text-cyan-accent font-bold' : 'text-white/50 hover:text-white'}`}
               >
-                04 / Services
+                03 / Services
               </button>
               <div className="pt-4 border-t border-white/10 flex gap-3">
                 <button
@@ -278,12 +257,11 @@ export default function App() {
               <section className="relative py-16 px-6 border-b border-white/5 z-10">
                 <div className="max-w-7xl mx-auto w-full">
                   <div className="font-mono text-[10px] tracking-[0.25em] text-cyan-accent font-semibold uppercase mb-4">// STUDIO_INDEX</div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {[
                       { key: 'timeline', label: '01 / Timeline', sub: 'Interactive multi-track studio editor', color: 'border-cyan-accent/30 hover:border-cyan-accent', accent: 'text-cyan-accent' },
-                      { key: 'lab',      label: '02 / Lab',      sub: 'Craft mockups & interactive prototypes', color: 'border-amber-accent/30 hover:border-amber-accent', accent: 'text-amber-accent' },
-                      { key: 'journal',  label: '03 / Journal',  sub: 'Full toolkit & capability inventory',  color: 'border-cyan-accent/30 hover:border-cyan-accent', accent: 'text-cyan-accent' },
-                      { key: 'services', label: '04 / Services', sub: 'Production capabilities & pricing',    color: 'border-white/20 hover:border-white/60', accent: 'text-white' },
+                      { key: 'journal',  label: '02 / Journal',  sub: 'Full toolkit & capability inventory',  color: 'border-cyan-accent/30 hover:border-cyan-accent', accent: 'text-cyan-accent' },
+                      { key: 'services', label: '03 / Services', sub: 'Production capabilities & pricing',    color: 'border-white/20 hover:border-white/60', accent: 'text-white' },
                     ].map(p => (
                       <button
                         key={p.key}
@@ -356,41 +334,6 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* ── 02 / LAB PAGE ─────────────────────────────────────────── */}
-          {currentPage === 'lab' && (
-            <motion.div
-              key="lab"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.35, ease: 'easeInOut' }}
-            >
-              {/* Page Hero */}
-              <section className="relative pt-28 pb-12 px-6 border-b border-white/5 z-10">
-                <div className="max-w-7xl mx-auto w-full">
-                  <div className="font-mono text-[10px] tracking-[0.25em] text-amber-accent font-semibold uppercase mb-3">// 02_CRAFT_LAB</div>
-                  <h1 className="font-display font-bold text-4xl md:text-6xl text-white tracking-tight mb-4">
-                    Interactive <span className="text-amber-accent">Prototypes</span> &amp; Production Masters
-                  </h1>
-                  <p className="text-white/50 text-sm max-w-xl font-light font-sans">
-                    Hover over each deck to engage micro-animations &amp; interaction loops. Three disciplines, three live mockups.
-                  </p>
-                </div>
-              </section>
-
-              {/* Lab Dashboard Components */}
-              <section className="relative py-12 px-6 z-10">
-                <div className="max-w-3xl mx-auto w-full space-y-8">
-                  <SaasMetricsCard />
-                  <BrandingPaletteTool />
-                  <InteractiveLutGrader />
-                  <TechInventory />
-                </div>
-              </section>
-
-              <Marquee />
-            </motion.div>
-          )}
 
           {/* ── 03 / JOURNAL PAGE ─────────────────────────────────────── */}
           {currentPage === 'journal' && (
@@ -404,7 +347,7 @@ export default function App() {
               {/* Page Hero */}
               <section className="relative pt-28 pb-12 px-6 border-b border-white/5 z-10">
                 <div className="max-w-7xl mx-auto w-full">
-                  <div className="font-mono text-[10px] tracking-[0.25em] text-cyan-accent font-semibold uppercase mb-3">// 03_TECH_INVENTORY</div>
+                  <div className="font-mono text-[10px] tracking-[0.25em] text-cyan-accent font-semibold uppercase mb-3">// 02_TECH_INVENTORY</div>
                   <h1 className="font-display font-bold text-4xl md:text-6xl text-white tracking-tight mb-4">
                     Capabilities &amp; <span className="text-cyan-accent">Toolkit</span> Focus
                   </h1>
@@ -431,7 +374,7 @@ export default function App() {
               {/* Page Hero */}
               <section className="relative pt-28 pb-12 px-6 border-b border-white/5 z-10">
                 <div className="max-w-7xl mx-auto w-full">
-                  <div className="font-mono text-[10px] tracking-[0.25em] text-amber-accent font-semibold uppercase mb-3">// 04_SERVICE_CATALOGUE</div>
+                  <div className="font-mono text-[10px] tracking-[0.25em] text-amber-accent font-semibold uppercase mb-3">// 03_SERVICE_CATALOGUE</div>
                   <h1 className="font-display font-bold text-4xl md:text-6xl text-white tracking-tight mb-4">
                     Production <span className="text-amber-accent">Capabilities</span>
                   </h1>
