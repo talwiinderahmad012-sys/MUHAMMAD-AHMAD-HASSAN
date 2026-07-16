@@ -1,127 +1,89 @@
 import { motion } from 'motion/react';
-import { Activity, Zap, Server } from 'lucide-react';
 
 export default function SaasMetricsCard() {
+  const sparklineHeights = [30, 45, 35, 60, 80, 55, 70, 40, 65, 75, 90, 50, 70, 85, 99.4];
+
   return (
-    <div className="w-full bg-zinc-950 border border-white/10 rounded-none p-6 md:p-8">
-      {/* Section Header */}
-      <div className="mb-6">
-        <div className="font-mono text-[10px] tracking-[0.25em] text-teal-400 font-semibold uppercase mb-2">
-          // WEB ENGINEERING
-        </div>
-        <h2 className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight">
-          Interactive SaaS Architecture
-        </h2>
+    <div className="w-full bg-zinc-950 border border-white/10 rounded-2xl p-6 md:p-8">
+      {/* Small monospace tag above heading */}
+      <div className="font-mono text-xs tracking-[0.25em] text-teal-400 font-semibold uppercase mb-2">
+        // WEB ENGINEERING
       </div>
+      {/* Large heading */}
+      <h2 className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight mb-6">
+        Interactive SaaS Architecture
+      </h2>
 
-      {/* Terminal-style Metrics Dashboard */}
-      <div className="bg-zinc-900 border border-white/5 rounded-none p-5 md:p-6 font-mono">
-        {/* Top Bar */}
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-          </div>
-          <div className="text-[10px] text-white/30 tracking-wider">
-            SERVER_METRICS // LIVE
-          </div>
-        </div>
-
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Cache Hit Rate */}
-          <div className="bg-zinc-800/50 border border-white/5 rounded-none p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Server className="w-4 h-4 text-teal-400" />
-              <span className="text-[10px] text-white/40 uppercase tracking-wider">
-                CACHE_HIT_RATE
-              </span>
+      {/* 2-column metrics grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-zinc-900/40 border border-white/5 rounded-xl font-mono">
+        {/* Left Column: CACHE_HIT_RATE */}
+        <div className="flex flex-col justify-between p-5 bg-zinc-950/60 border border-white/5 rounded-xl">
+          <div>
+            <div className="text-[10px] text-white/40 uppercase tracking-wider mb-2 font-semibold">
+              CACHE_HIT_RATE
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-3xl md:text-4xl font-bold text-white">
-                99.4
+            <div className="flex items-center gap-2">
+              <span className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                99.4%
               </span>
-              <span className="text-lg text-white/60">%</span>
-            </div>
-            <div className="mt-2 flex items-center gap-1.5">
-              <span className="text-[10px] text-green-400 font-semibold">
+              <span className="text-xs text-green-400 font-semibold bg-green-500/10 px-1.5 py-0.5 rounded">
                 +1.3%
               </span>
-              <span className="text-[9px] text-white/30">
-                vs last hour
-              </span>
             </div>
           </div>
+          
+          {/* Sparkline trend chart */}
+          <div className="flex items-end gap-1 h-12 w-full mt-6">
+            {sparklineHeights.map((height, i) => (
+              <motion.div
+                key={i}
+                className="flex-1 bg-teal-400/80 hover:bg-teal-400 transition-colors rounded-sm"
+                initial={{ height: 0 }}
+                animate={{ height: `${height}%` }}
+                transition={{ duration: 0.6, delay: i * 0.03, ease: 'easeOut' }}
+              />
+            ))}
+          </div>
+        </div>
 
-          {/* Latency */}
-          <div className="bg-zinc-800/50 border border-white/5 rounded-none p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Zap className="w-4 h-4 text-amber-400" />
-              <span className="text-[10px] text-white/40 uppercase tracking-wider">
+        {/* Right Column: LATENCY */}
+        <div className="flex flex-col justify-between p-5 bg-zinc-950/60 border border-white/5 rounded-xl">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] text-white/40 uppercase tracking-wider font-semibold">
                 LATENCY
               </span>
+              <span className="text-[10px] text-white/30 font-semibold uppercase">
+                EDGE_COMP
+              </span>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl md:text-4xl font-bold text-amber-400">
-                14.2
-              </span>
-              <span className="text-lg text-white/60">ms</span>
-            </div>
-            <div className="mt-2 flex items-center gap-1.5">
-              <span className="text-[10px] text-green-400 font-semibold">
-                -0.8ms
-              </span>
-              <span className="text-[9px] text-white/30">
-                improvement
+              <span className="text-3xl md:text-4xl font-bold text-amber-500 tracking-tight">
+                14.2ms
               </span>
             </div>
           </div>
 
-          {/* Active Connections */}
-          <div className="bg-zinc-800/50 border border-white/5 rounded-none p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Activity className="w-4 h-4 text-teal-400" />
-              <span className="text-[10px] text-white/40 uppercase tracking-wider">
-                ACTIVE_CONN
-              </span>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-3xl md:text-4xl font-bold text-white">
-                2.4k
-              </span>
-            </div>
-            <div className="mt-2 flex items-center gap-1.5">
-              <span className="text-[10px] text-teal-400 font-semibold">
-                +12%
-              </span>
-              <span className="text-[9px] text-white/30">
-                traffic spike
-              </span>
+          {/* Underline progress bar in amber */}
+          <div className="w-full mt-auto pt-6">
+            <div className="w-full h-1 bg-zinc-800/80 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-amber-500 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: '70%' }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              />
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Animated Progress Bar */}
-        <div className="mt-6 pt-4 border-t border-white/5">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-[10px] text-white/40 uppercase tracking-wider">
-              SYSTEM_LOAD
-            </span>
-            <span className="text-[10px] text-teal-400 font-mono">
-              67%
-            </span>
-          </div>
-          <div className="w-full h-2 bg-zinc-800 rounded-none overflow-hidden">
-            <motion.div
-              className="h-full bg-gradient-to-r from-teal-400 to-cyan-400"
-              initial={{ width: 0 }}
-              animate={{ width: '67%' }}
-              transition={{ duration: 1.5, ease: 'easeOut' }}
-            />
-          </div>
-        </div>
+      {/* Small monospace footer labels spaced apart */}
+      <div className="flex items-center justify-between mt-6 font-mono text-[10px] text-white/40 border-t border-white/5 pt-4">
+        <span>REPLICAS: x3 SERVERLESS</span>
+        <span>SECURE: JWT / TLS1.3</span>
       </div>
     </div>
   );
 }
+

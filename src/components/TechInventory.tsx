@@ -45,10 +45,10 @@ export default function TechInventory() {
   ];
 
   return (
-    <div className="w-full bg-zinc-950 border border-white/10 rounded-none p-6 md:p-8">
+    <div className="w-full bg-zinc-950 border border-white/10 rounded-2xl p-6 md:p-8">
       {/* Section Header */}
       <div className="mb-6">
-        <div className="font-mono text-[10px] tracking-[0.25em] text-teal-400 font-semibold uppercase mb-2">
+        <div className="font-mono text-xs tracking-[0.25em] text-teal-400 font-semibold uppercase mb-2">
           // TECH_INVENTORY
         </div>
         <h2 className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight">
@@ -64,7 +64,7 @@ export default function TechInventory() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-none font-mono text-[10px] uppercase tracking-wider transition-all duration-200 ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-[10px] uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-teal-400/10 border border-teal-400/30 text-teal-400'
                   : 'bg-zinc-900 border border-white/10 text-white/40 hover:text-white hover:border-white/20'
@@ -87,7 +87,7 @@ export default function TechInventory() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
-              className="bg-zinc-900 border border-white/5 rounded-none p-4 hover:border-teal-400/20 transition-colors"
+              className="bg-zinc-900 border border-white/5 rounded-xl p-4 hover:border-teal-400/20 transition-colors"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
                 <span className="font-mono text-sm text-white">
@@ -104,9 +104,9 @@ export default function TechInventory() {
               </div>
 
               {/* Progress Bar */}
-              <div className="w-full h-2 bg-zinc-800 rounded-none overflow-hidden">
+              <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-teal-400 to-cyan-400"
+                  className="h-full bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${skill.level}%` }}
                   transition={{ duration: 1, delay: idx * 0.1, ease: 'easeOut' }}
@@ -120,17 +120,17 @@ export default function TechInventory() {
       {/* Stats Footer */}
       <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-6 text-[10px] font-mono text-white/40">
         <div className="flex items-center gap-2">
-          <span className="text-teal-400">TOTAL_SKILLS:</span>
+          <span className="text-teal-400 font-semibold">TOTAL_SKILLS:</span>
           <span className="text-white">{skills.length}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-teal-400">AVG_MASTERY:</span>
+          <span className="text-teal-400 font-semibold">AVG_MASTERY:</span>
           <span className="text-white">
             {Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length)}%
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-teal-400">CATEGORIES:</span>
+          <span className="text-teal-400 font-semibold">CATEGORIES:</span>
           <span className="text-white">4</span>
         </div>
       </div>

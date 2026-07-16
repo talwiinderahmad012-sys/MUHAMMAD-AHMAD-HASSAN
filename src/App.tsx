@@ -15,6 +15,7 @@ import Contact from './components/Contact';
 import ConnectModal from './components/ConnectModal';
 import SaasMetricsCard from './components/SaasMetricsCard';
 import BrandingPaletteTool from './components/BrandingPaletteTool';
+import InteractiveLutGrader from './components/InteractiveLutGrader';
 import TechInventory from './components/TechInventory';
 
 // Icons
@@ -379,9 +380,10 @@ export default function App() {
 
               {/* Lab Dashboard Components */}
               <section className="relative py-12 px-6 z-10">
-                <div className="max-w-7xl mx-auto w-full space-y-8">
+                <div className="max-w-7xl mx-auto w-full space-y-12">
                   <SaasMetricsCard />
                   <BrandingPaletteTool />
+                  <InteractiveLutGrader />
                   <TechInventory />
                 </div>
               </section>

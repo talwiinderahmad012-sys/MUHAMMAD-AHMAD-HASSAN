@@ -1,141 +1,88 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Palette, Sliders } from 'lucide-react';
 
 export default function BrandingPaletteTool() {
-  const [sliderValue, setSliderValue] = useState(75);
-  const [selectedColor, setSelectedColor] = useState('#5EEAD4');
+  const [sliderValue, setSliderValue] = useState(50);
 
-  const brandColors = [
-    { name: 'Primary', value: '#5EEAD4', label: 'Cyan Accent' },
-    { name: 'Secondary', value: '#F5A524', label: 'Amber Accent' },
-    { name: 'Neutral', value: '#8FA3AE', label: 'Slate Gray' },
-    { name: 'Dark', value: '#0B0E14', label: 'Deep Black' },
+  const colors = [
+    { name: 'Dark Navy/Black', hex: '#07090D' },
+    { name: 'Teal/Mint', hex: '#5EEAD4' },
+    { name: 'Orange/Amber', hex: '#F5A524' },
+    { name: 'White', hex: '#FFFFFF' }
   ];
 
   return (
-    <div className="w-full bg-zinc-950 border border-white/10 rounded-none p-6 md:p-8">
+    <div className="w-full">
       {/* Section Header */}
       <div className="mb-6">
-        <div className="font-mono text-[10px] tracking-[0.25em] text-teal-400 font-semibold uppercase mb-2">
+        <div className="font-mono text-xs tracking-[0.25em] text-teal-400 font-semibold uppercase mb-2">
           // GRAPHIC & UI SYSTEMS
         </div>
-        <h2 className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight">
+        <h2 className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight mb-6">
           High-Fidelity Branding Systems
         </h2>
       </div>
 
-      <div className="space-y-6">
-        {/* Brand Block: Ambit Arch */}
-        <div className="bg-zinc-900 border border-white/5 rounded-none p-5 md:p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Palette className="w-4 h-4 text-teal-400" />
-            <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">
-              BRAND_BLOCK // AMBIT_ARCH
-            </span>
+      {/* Compact Card (left-aligned) */}
+      <div className="w-full max-w-md bg-zinc-950 border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col gap-6 shadow-xl">
+        {/* Client Header Info */}
+        <div className="flex items-center gap-4 border-b border-white/5 pb-4">
+          {/* Avatar with teal-to-amber gradient and bold initials 'AA' */}
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-300 via-teal-400 to-amber-500 flex items-center justify-center font-mono text-zinc-950 font-bold text-lg shadow-md tracking-wider">
+            AA
           </div>
-
-          {/* Color Swatches */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {brandColors.map((color, idx) => (
-              <motion.div
-                key={idx}
-                className="cursor-pointer group"
-                onClick={() => setSelectedColor(color.value)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div
-                  className="aspect-square rounded-none border-2 transition-all duration-200 mb-2"
-                  style={{
-                    backgroundColor: color.value,
-                    borderColor: selectedColor === color.value ? '#00f2fe' : 'transparent',
-                  }}
-                />
-                <div className="text-[10px] font-mono text-white/60 text-center">
-                  {color.name}
-                </div>
-                <div className="text-[9px] font-mono text-white/30 text-center">
-                  {color.value}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Selected Color Preview */}
-          <div className="bg-zinc-800/50 border border-white/5 rounded-none p-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] text-white/40 uppercase tracking-wider">
-                SELECTED_COLOR
-              </span>
-              <span className="font-mono text-xs text-teal-400">
-                {selectedColor}
-              </span>
-            </div>
-            <div
-              className="w-full h-16 rounded-none border border-white/10"
-              style={{ backgroundColor: selectedColor }}
-            />
+          <div>
+            <h3 className="text-white font-bold text-base tracking-wide">
+              Ambit Arch
+            </h3>
+            <p className="font-mono text-[10px] text-white/40 uppercase tracking-widest mt-0.5">
+              CLIENT_ID: 9811
+            </p>
           </div>
         </div>
 
-        {/* Interactive Slider */}
-        <div className="bg-zinc-900 border border-white/5 rounded-none p-5 md:p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Sliders className="w-4 h-4 text-teal-400" />
-            <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">
-              OPACITY_ADJUSTMENT
+        {/* Brand Palette CONFIG */}
+        <div>
+          <div className="font-mono text-[10px] text-white/40 uppercase tracking-wider mb-3 font-semibold">
+            BRAND PALETTE CONFIG
+          </div>
+          <div className="flex items-center gap-3">
+            {colors.map((color, idx) => (
+              <div key={idx} className="flex flex-col items-center gap-1.5 group">
+                <div 
+                  className="w-10 h-10 rounded-lg border border-white/10 shadow-sm transition-transform duration-200 group-hover:scale-105"
+                  style={{ backgroundColor: color.hex }}
+                  title={`${color.name}: ${color.hex}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Grid Scaling Slider */}
+        <div className="flex flex-col gap-3 font-mono">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] text-white/40 uppercase tracking-wider font-semibold">
+              GRID SCALING (ALGEBRA)
+            </span>
+            <span className="text-sm text-amber-500 font-bold">
+              {sliderValue}%
             </span>
           </div>
 
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-[10px] text-white/40 uppercase tracking-wider">
-                VALUE
-              </span>
-              <span className="font-mono text-lg text-teal-400">
-                {sliderValue}%
-              </span>
-            </div>
-
-            {/* Custom Slider */}
-            <div className="relative">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderValue}
-                onChange={(e) => setSliderValue(Number(e.target.value))}
-                className="w-full h-2 bg-zinc-800 rounded-none appearance-none cursor-pointer"
-                style={{
-                  background: `linear-gradient(to right, #00f2fe 0%, #00f2fe ${sliderValue}%, #27272a ${sliderValue}%, #27272a 100%)`,
-                }}
-              />
-              {/* Custom Thumb */}
-              <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-teal-400 rounded-none border-2 border-white shadow-lg pointer-events-none transition-all duration-150"
-                style={{ left: `calc(${sliderValue}% - 10px)` }}
-              />
-            </div>
-
-            {/* Preview with Opacity */}
-            <div className="mt-4">
-              <div className="text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                PREVIEW
-              </div>
-              <div
-                className="w-full h-12 rounded-none border border-white/10 relative overflow-hidden"
-                style={{ backgroundColor: selectedColor }}
-              >
-                <div
-                  className="absolute inset-0 bg-zinc-950"
-                  style={{ opacity: (100 - sliderValue) / 100 }}
-                />
-              </div>
-            </div>
+          {/* Interactive Range Slider */}
+          <div className="relative flex items-center mt-1">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={sliderValue}
+              onChange={(e) => setSliderValue(Number(e.target.value))}
+              className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer focus:outline-none accent-amber-500"
+            />
           </div>
         </div>
       </div>
     </div>
   );
 }
+
