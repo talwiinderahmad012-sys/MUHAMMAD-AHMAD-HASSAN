@@ -380,7 +380,7 @@ export default function App() {
 
               {/* Lab Dashboard Components */}
               <section className="relative py-12 px-6 z-10">
-                <div className="max-w-7xl mx-auto w-full space-y-12">
+                <div className="max-w-3xl mx-auto w-full space-y-8">
                   <SaasMetricsCard />
                   <BrandingPaletteTool />
                   <InteractiveLutGrader />
