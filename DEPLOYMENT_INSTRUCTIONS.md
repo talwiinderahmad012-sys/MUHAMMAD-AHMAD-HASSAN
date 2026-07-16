@@ -6,7 +6,7 @@
 ## Architecture Overview
 
 This project now includes a **free Express backend** to:
-- Securely proxy contact form submissions to Formspree (no API keys exposed in frontend)
+- Securely proxy contact form submissions to Web3Forms (no API keys exposed in frontend)
 - Serve the React frontend in production
 - Provide a foundation for future AI features via Gemini API proxy
 
@@ -29,7 +29,7 @@ Edit .env with your actual values:
 `env
 PORT=3001
 NODE_ENV=development
-FORMSPREE_ID=your_actual_formspree_id_here
+WEB3FORMS_ACCESS_KEY=your_actual_web3forms_access_key_here
 GEMINI_API_KEY=your_actual_gemini_key_here  # Optional
 `
 
@@ -64,10 +64,10 @@ Render offers a genuinely free tier for web services with no credit card require
 
 ### Deployment Steps
 
-#### 1. Get Your Free Formspree ID
-1. Go to [formspree.io](https://formspree.io) and create a free account
-2. Create a new form - you'll get a Form ID (looks like: xvbdqzje)
-3. **Free tier: 50 submissions/month, no credit card required**
+#### 1. Get Your Free Web3Forms Access Key
+1. Go to [web3forms.com](https://web3forms.com) and create a free account
+2. Create a new form - you'll get an Access Key
+3. **Free tier: 250 submissions/month, no credit card required**
 
 #### 2. Push Code to GitHub
 `ash
@@ -93,7 +93,7 @@ pm start
 5. **Add Environment Variables** (in Render dashboard):
    - NODE_ENV: production
    - PORT: 10000 (Render's default port)
-   - FORMSPREE_ID: your_actual_formspree_id_here
+   - WEB3FORMS_ACCESS_KEY: your_actual_web3forms_access_key_here
    - GEMINI_API_KEY: your_actual_gemini_key_here (optional)
 6. Click **Create Web Service**
 
@@ -128,9 +128,9 @@ https://hexframe-portfolio.onrender.com
 - The Express server loads secrets from environment variables via dotenv
 - Frontend never sees API keys - all sensitive calls go through backend
 
-### Formspree Security
-- Formspree ID is stored server-side only
-- Frontend calls /api/contact which proxies to Formspree
+### Web3Forms Security
+- Web3Forms Access Key is stored server-side only
+- Frontend calls /api/contact which proxies to Web3Forms
 - No API keys exposed in browser bundle
 
 ## Contact Form Validation
@@ -158,7 +158,7 @@ Error messages appear inline near each field with red border highlighting when v
 
 ## Testing Checklist
 
-- [ ] Contact form submits successfully (after Formspree setup)
+- [ ] Contact form submits successfully (after Web3Forms setup)
 - [ ] All social links open in new tabs
 - [ ] Mobile menu works on small screens
 - [ ] Smooth scrolling works on all pages
@@ -171,17 +171,17 @@ Error messages appear inline near each field with red border highlighting when v
 ## Current Status
 
 ? All functionality implemented
-? Express backend with Formspree proxy
+? Express backend with Web3Forms proxy
 ? Environment variable security
 ? Frontend-backend integration
-?? **Requires Formspree ID setup for contact forms**
+?? **Requires Web3Forms Access Key setup for contact forms**
 ?? **Requires deployment to Render (or similar) for live URL**
 
 ## Free Services Summary
 
 | Service | Free Tier Limitations | Cost |
 |---------|---------------------|------|
-| Formspree | 50 submissions/month |  |
+| Web3Forms | 250 submissions/month |  |
 | Render Web Service | Sleeps after 15min inactivity, 512MB RAM |  |
 | GitHub | Unlimited public repos |  |
 | Gemini API (optional) | 15 requests/minute |  |

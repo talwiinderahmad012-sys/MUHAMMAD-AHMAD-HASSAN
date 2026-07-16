@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // API Routes
 
-// Contact form endpoint - proxies to Formspree
+// Contact form endpoint - proxies to Web3Forms
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, message, budget, disciplines } = req.body;
@@ -42,37 +42,39 @@ app.post('/api/contact', async (req, res) => {
       });
     }
 
-    // Get Formspree ID from environment
-    const formspreeId = process.env.FORMSPREE_ID;
-    if (!formspreeId) {
-      console.error('FORMSPREE_ID not configured in environment variables');
+    // Get Web3Forms Access Key from environment
+    const web3FormsKey = process.env.WEB3FORMS_ACCESS_KEY;
+    if (!web3FormsKey) {
+      console.error('WEB3FORMS_ACCESS_KEY not configured in environment variables');
       return res.status(500).json({ 
-        error: 'Server configuration error: Formspree not configured' 
+        error: 'Server configuration error: Web3Forms not configured' 
       });
     }
 
-    // Forward to Formspree
-    const formspreeResponse = await fetch(`https://formspree.io/f/${formspreeId}`, {
+    // Forward to Web3Forms
+    const web3FormsResponse = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        access_key: web3FormsKey,
         name,
         email,
         message,
         budget: budget || 'Not specified',
         disciplines: disciplines || 'Not specified',
+        subject: 'New Contact Form Submission from Hexframe Portfolio',
       }),
     });
 
-    if (formspreeResponse.ok) {
+    if (web3FormsResponse.ok) {
       return res.status(200).json({ success: true });
     } else {
-      const errorData = await formspreeResponse.json().catch(() => ({}));
-      console.error('Formspree error:', errorData);
-      return res.status(formspreeResponse.status).json({ 
-        error: errorData.error || 'Failed to send message' 
+      const errorData = await web3FormsResponse.json().catch(() => ({}));
+      console.error('Web3Forms error:', errorData);
+      return res.status(web3FormsResponse.status).json({ 
+        error: errorData.message || 'Failed to send message' 
       });
     }
   } catch (error) {
