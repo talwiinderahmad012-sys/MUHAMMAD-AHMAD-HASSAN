@@ -1,0 +1,8 @@
+- [x] Identify project favicon references (index.html).
+- [x] Identify newest logo asset in root (found placeholder-sized file; ignored).
+- [x] Attempt favicon generation from root image (failed due to invalid payload).
+- [x] Attempt favicon generation from src/assets/images/hexframe_logo_flat.svg (no output produced in public/).
+- [ ] Generate favicon.ico (16x16, 32x32) and favicon.svg into public/.
+- [ ] Update index.html favicon + apple-touch-icon paths.
+- [ ] Commit and push changes to GitHub.
+- [ ] Report Vercel redeploy time estimate.
