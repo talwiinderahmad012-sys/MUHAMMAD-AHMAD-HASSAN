@@ -3,11 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, Code2, Sparkles, Tv } from 'lucide-react';
 import portraitImg from '../assets/images/ahmad-portrait.jpg';
 
-interface HeroProps {
-  onInitiateProject?: () => void;
-}
-
-export default function Hero({ onInitiateProject }: HeroProps) {
+export default function Hero() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -83,12 +79,8 @@ export default function Hero({ onInitiateProject }: HeroProps) {
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2">
             <button
               onClick={() => {
-                if (onInitiateProject) {
-                  onInitiateProject();
-                } else {
-                  const el = document.getElementById('timeline-section');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
+                const el = document.getElementById('timeline-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
               className="bg-[#5EEAD4] text-black px-6 py-3.5 rounded-none font-bold text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2 group cursor-pointer"
             >

@@ -9,11 +9,9 @@ import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import ProgramMonitor from './components/ProgramMonitor';
 import Timeline from './components/Timeline';
-import CraftShowcase from './components/CraftShowcase';
 import SkillsGrid from './components/SkillsGrid';
 import ServicesList from './components/ServicesList';
 import Contact from './components/Contact';
-import ProofOfWorkModal from './components/ProofOfWorkModal';
 import ConnectModal from './components/ConnectModal';
 
 // Icons
@@ -25,7 +23,6 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedClipId, setSelectedClipId] = useState<string | null>('dev-1');
   const [focusedTrack, setFocusedTrack] = useState<TrackType>('DEV');
-  const [isProofOfWorkOpen, setIsProofOfWorkOpen] = useState(false);
   const [isConnectOpen, setIsConnectOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -188,12 +185,6 @@ export default function App() {
         {/* Action Coord buttons - hidden on mobile */}
         <div className="hidden md:flex gap-3">
           <button
-            onClick={() => setIsProofOfWorkOpen(true)}
-            className="border border-[#5EEAD4]/40 hover:border-[#5EEAD4] px-5 py-2 rounded-none font-bold text-[10px] uppercase tracking-widest text-white hover:bg-[#5EEAD4]/5 transition-all cursor-pointer"
-          >
-            PROOF_OF_WORK
-          </button>
-          <button
             onClick={() => setIsConnectOpen(true)}
             className="border border-[#F5A524]/40 hover:border-[#F5A524] px-5 py-2 rounded-none font-bold text-[10px] uppercase tracking-widest text-white hover:bg-white/[0.03] transition-all cursor-pointer"
           >
@@ -251,13 +242,6 @@ export default function App() {
               </button>
               <div className="pt-4 border-t border-white/10 flex gap-3">
                 <button
-                  onClick={() => { setIsProofOfWorkOpen(true); setIsMobileMenuOpen(false); }}
-                  aria-label="Open proof of work modal"
-                  className="flex-1 border border-[#5EEAD4]/40 hover:border-[#5EEAD4] px-4 py-2 rounded-none font-bold text-[10px] uppercase tracking-widest text-white hover:bg-[#5EEAD4]/5 transition-all cursor-pointer"
-                >
-                  PROOF_OF_WORK
-                </button>
-                <button
                   onClick={() => { setIsConnectOpen(true); setIsMobileMenuOpen(false); }}
                   aria-label="Open connect modal"
                   className="flex-1 border border-[#F5A524]/40 hover:border-[#F5A524] px-4 py-2 rounded-none font-bold text-[10px] uppercase tracking-widest text-white hover:bg-white/[0.03] transition-all cursor-pointer"
@@ -283,7 +267,7 @@ export default function App() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35, ease: 'easeInOut' }}
             >
-              <Hero onInitiateProject={() => setIsProofOfWorkOpen(true)} />
+              <Hero />
               <Marquee />
 
               {/* Quick-look strip — calls to each page */}
@@ -390,7 +374,6 @@ export default function App() {
                 </div>
               </section>
 
-              <CraftShowcase />
               <Marquee />
             </motion.div>
           )}
@@ -480,15 +463,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* 6. Proof of Work Modal overlay */}
-      <AnimatePresence>
-        {isProofOfWorkOpen && (
-          <ProofOfWorkModal
-            isOpen={isProofOfWorkOpen}
-            onClose={() => setIsProofOfWorkOpen(false)}
-          />
-        )}
-      </AnimatePresence>
 
       {/* 7. Connect Modal overlay */}
       <AnimatePresence>
