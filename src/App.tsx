@@ -13,9 +13,10 @@ import SkillsGrid from './components/SkillsGrid';
 import ServicesList from './components/ServicesList';
 import Contact from './components/Contact';
 import ConnectModal from './components/ConnectModal';
+import TranscriptionModal from './components/TranscriptionModal';
 
 // Icons
-import { Terminal, Settings, Sliders, ExternalLink, Menu, X } from 'lucide-react';
+import { Terminal, Settings, Sliders, ExternalLink, Menu, X, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'timeline' | 'lab' | 'journal' | 'services'>('home');
@@ -24,6 +25,7 @@ export default function App() {
   const [selectedClipId, setSelectedClipId] = useState<string | null>('dev-1');
   const [focusedTrack, setFocusedTrack] = useState<TrackType>('DEV');
   const [isConnectOpen, setIsConnectOpen] = useState(false);
+  const [isTranscriptionOpen, setIsTranscriptionOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
@@ -374,6 +376,37 @@ export default function App() {
                 </div>
               </section>
 
+              {/* Transcription Tool Trigger */}
+              <section className="relative py-16 px-6 z-10">
+                <div className="max-w-7xl mx-auto w-full">
+                  <div className="bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-none p-8 md:p-12 hover:border-amber-accent/30 transition-all duration-300">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-12 h-12 bg-amber-accent/10 border border-amber-accent/30 flex items-center justify-center rounded-none">
+                            <Sparkles className="w-6 h-6 text-amber-accent" />
+                          </div>
+                          <div>
+                            <h3 className="font-display font-bold text-xl text-white">Localization Suite</h3>
+                            <p className="text-white/40 text-sm font-mono mt-1">AI-POWERED TRANSCRIPTION TOOL</p>
+                          </div>
+                        </div>
+                        <p className="text-white/50 text-sm leading-relaxed max-w-lg">
+                          Upload video content and generate multi-language transcriptions with real-time subtitle synchronization. Supports 6+ languages and multiple writing systems.
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setIsTranscriptionOpen(true)}
+                        className="bg-amber-accent text-black px-8 py-4 rounded-none font-bold text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                      >
+                        Launch Tool
+                        <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
               <Marquee />
             </motion.div>
           )}
@@ -470,6 +503,16 @@ export default function App() {
           <ConnectModal
             isOpen={isConnectOpen}
             onClose={() => setIsConnectOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* 8. Transcription Modal overlay */}
+      <AnimatePresence>
+        {isTranscriptionOpen && (
+          <TranscriptionModal
+            isOpen={isTranscriptionOpen}
+            onClose={() => setIsTranscriptionOpen(false)}
           />
         )}
       </AnimatePresence>
