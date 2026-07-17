@@ -30,7 +30,7 @@ Edit .env with your actual values:
 `env
 PORT=3001
 NODE_ENV=development
-VITE_WEB3FORMS_ACCESS_KEY=your_actual_web3forms_access_key_here
+WEB3FORMS_ACCESS_KEY=your_actual_web3forms_access_key_here
 GEMINI_API_KEY=your_actual_gemini_key_here  # Optional
 `
 
@@ -94,7 +94,7 @@ pm start
 5. **Add Environment Variables** (in Render dashboard or Vercel dashboard):
    - NODE_ENV: production
    - PORT: 10000 (Render's default port)
-   - VITE_WEB3FORMS_ACCESS_KEY: your_actual_web3forms_access_key_here
+   - WEB3FORMS_ACCESS_KEY: your_actual_web3forms_access_key_here
    - GEMINI_API_KEY: your_actual_gemini_key_here (optional)
 6. Click **Create Web Service**
 
@@ -126,7 +126,7 @@ https://hexframe-portfolio.onrender.com
 ### Environment Variables
 - **NEVER commit .env file** to git (it's in .gitignore)
 - **Always use environment variables** for API keys
-- Frontend code accesses keys via Vite's `VITE_` prefix (e.g. `import.meta.env.VITE_WEB3FORMS_ACCESS_KEY`)
+- The build config (`vite.config.ts`) dynamically defines and maps the `WEB3FORMS_ACCESS_KEY` environment variable to `import.meta.env.VITE_WEB3FORMS_ACCESS_KEY` for the frontend bundle. This avoids the need to prefix the environment variable with `VITE_` in Vercel.
 
 ### Web3Forms Security
 - Web3Forms is designed to work directly from the frontend/browser.
