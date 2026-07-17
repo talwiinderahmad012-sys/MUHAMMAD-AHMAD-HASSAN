@@ -6,9 +6,10 @@
 ## Architecture Overview
 
 This project now includes a **free Express backend** to:
-- Securely proxy contact form submissions to Web3Forms (no API keys exposed in frontend)
 - Serve the React frontend in production
 - Provide a foundation for future AI features via Gemini API proxy
+
+**Contact form submissions are handled directly from the frontend using Web3Forms, meaning no backend proxy is required for the forms to function on platforms like Vercel.**
 
 **All services used are 100% FREE - no credit card required.**
 
@@ -29,7 +30,7 @@ Edit .env with your actual values:
 `env
 PORT=3001
 NODE_ENV=development
-WEB3FORMS_ACCESS_KEY=your_actual_web3forms_access_key_here
+VITE_WEB3FORMS_ACCESS_KEY=your_actual_web3forms_access_key_here
 GEMINI_API_KEY=your_actual_gemini_key_here  # Optional
 `
 
@@ -90,10 +91,10 @@ git push -u origin main
 pm install && npm run build
    - **Start Command**: 
 pm start
-5. **Add Environment Variables** (in Render dashboard):
+5. **Add Environment Variables** (in Render dashboard or Vercel dashboard):
    - NODE_ENV: production
    - PORT: 10000 (Render's default port)
-   - WEB3FORMS_ACCESS_KEY: your_actual_web3forms_access_key_here
+   - VITE_WEB3FORMS_ACCESS_KEY: your_actual_web3forms_access_key_here
    - GEMINI_API_KEY: your_actual_gemini_key_here (optional)
 6. Click **Create Web Service**
 
@@ -125,13 +126,11 @@ https://hexframe-portfolio.onrender.com
 ### Environment Variables
 - **NEVER commit .env file** to git (it's in .gitignore)
 - **Always use environment variables** for API keys
-- The Express server loads secrets from environment variables via dotenv
-- Frontend never sees API keys - all sensitive calls go through backend
+- Frontend code accesses keys via Vite's `VITE_` prefix (e.g. `import.meta.env.VITE_WEB3FORMS_ACCESS_KEY`)
 
 ### Web3Forms Security
-- Web3Forms Access Key is stored server-side only
-- Frontend calls /api/contact which proxies to Web3Forms
-- No API keys exposed in browser bundle
+- Web3Forms is designed to work directly from the frontend/browser.
+- The access key is safe to be exposed in the frontend as it only allows submitting to your configured email address.
 
 ## Contact Form Validation
 
@@ -144,17 +143,17 @@ The Contact form validates all fields before submission:
 
 Error messages appear inline near each field with red border highlighting when validation fails.
 
-## Files Modified for Backend Integration
+## Files Modified for Frontend/Backend Integration
 
 ### New Files
-- server.ts - Express server with API routes
+- server.ts - Express server (remains in codebase, but no longer handles contact submissions)
 - .env.example - Environment variables template
 - .gitignore - Prevents committing sensitive files
 
 ### Modified Files
 - package.json - Added server scripts
-- src/components/Contact.tsx - Changed to call /api/contact endpoint
-- src/components/ConnectModal.tsx - Changed to call /api/contact endpoint
+- src/components/Contact.tsx - Updated to call Web3Forms API directly from the frontend
+- src/components/ConnectModal.tsx - Updated to call Web3Forms API directly from the frontend
 
 ## Testing Checklist
 

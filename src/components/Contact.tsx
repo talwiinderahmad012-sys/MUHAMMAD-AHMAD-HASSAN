@@ -86,12 +86,13 @@ export default function Contact() {
     setFormState('submitting');
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
           name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -104,7 +105,7 @@ export default function Contact() {
         setFormState('success');
       } else {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Failed to send message');
+        throw new Error(errorData.message || 'Failed to send message');
       }
     } catch (error) {
       console.error('Form submission error:', error);
