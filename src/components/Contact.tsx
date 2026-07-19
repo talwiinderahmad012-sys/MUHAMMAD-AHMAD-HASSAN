@@ -2,19 +2,36 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { 
   Github, Linkedin, Instagram, Facebook,
-  Send, Check, Loader2, ArrowRight, ExternalLink 
+  Send, Check, Loader2, ArrowRight, ExternalLink,
+  Mail, Phone
 } from 'lucide-react';
 import { SOCIAL_LINKS } from '../data';
+
+const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={props.className}
+  >
+    <path d="M12.004 0C5.378 0 0 5.378 0 12.004c0 2.116.551 4.183 1.6 6.006L.055 24l6.199-1.624c1.765.961 3.753 1.469 5.75 1.469 6.626 0 12.004-5.379 12.004-12.004C24.008 5.378 18.63 0 12.004 0zm0 22.02c-1.897 0-3.76-.51-5.392-1.472l-.387-.23-3.642.955.973-3.552-.253-.403a9.95 9.95 0 0 1-1.523-5.314c0-5.512 4.486-9.998 10.003-9.998 2.671 0 5.181 1.04 7.07 2.93 1.888 1.888 2.927 4.399 2.927 7.069 0 5.513-4.486 10.001-10.002 10.001zM16.85 13.91c-.266-.134-1.576-.777-1.82-.865-.243-.09-.422-.134-.6.134-.177.266-.688.865-.843 1.04-.155.178-.31.2-.577.067-.266-.134-1.127-.415-2.147-1.326-.793-.707-1.33-1.581-1.485-1.848-.155-.266-.017-.41.117-.543.122-.12.266-.31.4-.466.133-.155.177-.266.266-.443.09-.177.044-.332-.022-.466-.067-.134-.6-1.44-.82-1.972-.216-.518-.435-.447-.6-.456-.155-.008-.332-.008-.51-.008-.177 0-.465.066-.71.332-.243.266-.93.908-.93 2.215 0 1.306.953 2.568 1.085 2.745.133.177 1.876 2.864 4.545 4.015.635.274 1.13.438 1.517.561.64.204 1.22.175 1.68.107.513-.077 1.576-.643 1.798-1.263.22-.62.22-1.152.155-1.263-.067-.11-.244-.177-.51-.31z" />
+  </svg>
+);
 
 const ICON_MAP: Record<string, any> = {
   Github,
   Linkedin,
   Instagram,
   Facebook,
+  Mail,
+  Phone,
+  Whatsapp: WhatsappIcon,
 };
 
 // Each platform's official brand color
 const BRAND_COLORS: Record<string, string> = {
+  Email:     '#5EEAD4',
+  Phone:     '#5EEAD4',
+  WhatsApp:  '#25D366',
   GitHub:    '#ffffff',
   LinkedIn:  '#0A66C2',
   Instagram: '#E1306C',
@@ -185,7 +202,9 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ '--brand': brandColor } as React.CSSProperties}
-                    className="social-link flex items-center justify-between p-3 rounded-none bg-white/[0.015] border border-white/5 hover:bg-white/[0.03] text-white/60 transition-all text-xs font-mono group"
+                    className={`social-link flex items-center justify-between p-3 rounded-none bg-white/[0.015] border border-white/5 hover:bg-white/[0.03] text-white/60 transition-all text-xs font-mono group ${
+                      link.name === 'WhatsApp' ? 'social-link-whatsapp' : ''
+                    }`}
                   >
                     <div className="flex items-center gap-3">
                       <IconComp className="social-icon w-4 h-4 text-white/30 transition-colors duration-300" />
@@ -229,8 +248,8 @@ export default function Contact() {
                           if (errors.name) setErrors({ ...errors, name: '' });
                         }}
                         placeholder="e.g. John Doe"
-                        className={`w-full px-4 py-3 bg-[#11151D] border rounded-none text-sm text-white placeholder-white/20 focus:outline-none transition-colors ${
-                          errors.name ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-cyan-accent/50'
+                        className={`w-full px-4 py-3 bg-[#11151D] border rounded-none text-sm text-white placeholder-white/20 focus:outline-none transition-all form-field-cyan-glow ${
+                          errors.name ? 'border-red-500/50 form-field-error-glow' : 'border-white/10'
                         }`}
                       />
                       {errors.name && (
@@ -253,8 +272,8 @@ export default function Contact() {
                           if (errors.email) setErrors({ ...errors, email: '' });
                         }}
                         placeholder="e.g. john@domain.com"
-                        className={`w-full px-4 py-3 bg-[#11151D] border rounded-none text-sm text-white placeholder-white/20 focus:outline-none transition-colors ${
-                          errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-cyan-accent/50'
+                        className={`w-full px-4 py-3 bg-[#11151D] border rounded-none text-sm text-white placeholder-white/20 focus:outline-none transition-all form-field-cyan-glow ${
+                          errors.email ? 'border-red-500/50 form-field-error-glow' : 'border-white/10'
                         }`}
                       />
                       {errors.email && (
@@ -280,7 +299,7 @@ export default function Contact() {
                               handleDisciplineToggle(track);
                               if (errors.disciplines) setErrors({ ...errors, disciplines: '' });
                             }}
-                            className={`px-4 py-2 rounded-none font-mono text-xs tracking-wider border cursor-pointer transition-all ${
+                            className={`px-4 py-2 rounded-none font-mono text-xs tracking-wider border cursor-pointer transition-all form-field-cyan-glow ${
                               isSelected
                                 ? track === 'DEV'
                                   ? 'bg-cyan-accent/10 border-cyan-accent text-cyan-accent'
@@ -288,7 +307,7 @@ export default function Contact() {
                                     ? 'bg-amber-accent/10 border-amber-accent text-amber-accent'
                                     : 'bg-white/10 border-white text-white'
                                 : errors.disciplines
-                                  ? 'bg-[#11151D] border-red-500/50 text-white/40 hover:border-red-500/70'
+                                  ? 'bg-[#11151D] border-red-500/50 text-white/40 hover:border-red-500/70 form-field-error-glow'
                                   : 'bg-[#11151D] border-white/5 text-white/40 hover:border-white/10 hover:text-white/70'
                             }`}
                           >
@@ -321,11 +340,11 @@ export default function Contact() {
                               setFormData({ ...formData, budget: range });
                               if (errors.budget) setErrors({ ...errors, budget: '' });
                             }}
-                            className={`py-2 rounded-none font-mono text-xs text-center border cursor-pointer transition-all ${
+                            className={`py-2 rounded-none font-mono text-xs text-center border cursor-pointer transition-all form-field-cyan-glow ${
                               isSelected
                                 ? 'bg-white/10 border-white text-white font-bold'
                                 : errors.budget
-                                  ? 'bg-[#11151D] border-red-500/50 text-white/30 hover:border-red-500/70'
+                                  ? 'bg-[#11151D] border-red-500/50 text-white/30 hover:border-red-500/70 form-field-error-glow'
                                   : 'bg-[#11151D] border-white/5 text-white/30 hover:border-white/10 hover:text-white/55'
                             }`}
                           >
@@ -353,8 +372,8 @@ export default function Contact() {
                       }}
                       placeholder="e.g. Briefly describe your digital scaling objectives..."
                       rows={4}
-                      className={`w-full px-4 py-3 bg-[#11151D] border rounded-none text-sm text-white placeholder-white/20 focus:outline-none transition-colors resize-none ${
-                        errors.message ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-cyan-accent/50'
+                     className={`w-full px-4 py-3 bg-[#11151D] border rounded-none text-sm text-white placeholder-white/20 focus:outline-none transition-all resize-none form-field-cyan-glow ${
+                        errors.message ? 'border-red-500/50 form-field-error-glow' : 'border-white/10'
                       }`}
                     />
                     {errors.message && (
@@ -373,7 +392,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={formState === 'submitting'}
-                    className="w-full py-4 rounded-none bg-white text-[#0B0E14] font-display font-extrabold text-sm tracking-wider hover:bg-cyan-accent hover:shadow-lg hover:shadow-cyan-accent/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="w-full py-4 rounded-none bg-white text-[#0B0E14] font-display font-extrabold text-sm tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 form-submit-amber-glow"
                   >
                     {formState === 'submitting' ? (
                       <>

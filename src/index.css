@@ -67,12 +67,71 @@ body {
   animation: spin-slow 20s linear infinite;
 }
 
-/* Social link: reveal each platform's official brand color on hover */
-.social-link:hover .social-icon {
+/* Social link: reveal each platform's official brand color on hover or focus */
+.social-link:hover .social-icon,
+.social-link:focus .social-icon,
+.social-link:focus-visible .social-icon {
   color: var(--brand);
 }
-.social-link:hover .social-label {
+.social-link:hover .social-label,
+.social-link:focus .social-label,
+.social-link:focus-visible .social-label {
   color: var(--brand);
 }
+.social-link:focus,
+.social-link:focus-visible {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+/* WhatsApp social link hover/focus glow */
+.social-link-whatsapp {
+  transition: all 0.3s ease-in-out;
+}
+.social-link-whatsapp:hover,
+.social-link-whatsapp:focus,
+.social-link-whatsapp:focus-visible {
+  border-color: rgba(37, 211, 102, 0.4) !important;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.15) !important;
+  background-color: rgba(37, 211, 102, 0.03) !important;
+  outline: none !important;
+}
+
+/* Contact form fields glow effects on hover/focus */
+.form-field-cyan-glow {
+  transition: all 0.25s ease-in-out;
+}
+.form-field-cyan-glow:hover,
+.form-field-cyan-glow:focus,
+.form-field-cyan-glow:focus-visible {
+  border-color: rgba(94, 234, 212, 0.6) !important;
+  box-shadow: 0 0 15px rgba(94, 234, 212, 0.25) !important;
+  outline: none !important;
+}
+
+/* Error state field glow on hover/focus */
+.form-field-error-glow:hover,
+.form-field-error-glow:focus,
+.form-field-error-glow:focus-visible {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.25) !important;
+  outline: none !important;
+}
+
+/* Submit button glow on hover/focus */
+.form-submit-amber-glow {
+  transition: all 0.25s ease-in-out;
+}
+.form-submit-amber-glow:hover,
+.form-submit-amber-glow:focus,
+.form-submit-amber-glow:focus-visible {
+  background-color: #F5A524 !important;
+  color: #0B0E14 !important;
+  border-color: #F5A524 !important;
+  box-shadow: 0 0 20px rgba(245, 165, 36, 0.4) !important;
+  outline: none !important;
+}
+
 
 
