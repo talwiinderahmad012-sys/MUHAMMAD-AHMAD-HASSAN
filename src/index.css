@@ -133,5 +133,30 @@ body {
   outline: none !important;
 }
 
+/* Direct Contact Coordinates Link Styling */
+.direct-contact-link,
+.direct-contact-link:visited {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+.direct-contact-link:hover,
+.direct-contact-link:focus,
+.direct-contact-link:focus-visible {
+  color: #5EEAD4 !important;
+}
+
+.whatsapp-direct-link,
+.whatsapp-direct-link:visited {
+  color: #25D366 !important;
+  text-decoration: none;
+}
+.whatsapp-direct-link:hover,
+.whatsapp-direct-link:focus,
+.whatsapp-direct-link:focus-visible {
+  color: #25D366 !important;
+  text-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
+}
+
+
 
 

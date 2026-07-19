@@ -1,42 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { 
-  Github, Linkedin, Instagram, Facebook,
-  Send, Check, Loader2, ArrowRight, ExternalLink,
-  Mail, Phone
-} from 'lucide-react';
-import { SOCIAL_LINKS } from '../data';
+import { Send, Check, Loader2 } from 'lucide-react';
 
-const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={props.className}
-  >
-    <path d="M12.004 0C5.378 0 0 5.378 0 12.004c0 2.116.551 4.183 1.6 6.006L.055 24l6.199-1.624c1.765.961 3.753 1.469 5.75 1.469 6.626 0 12.004-5.379 12.004-12.004C24.008 5.378 18.63 0 12.004 0zm0 22.02c-1.897 0-3.76-.51-5.392-1.472l-.387-.23-3.642.955.973-3.552-.253-.403a9.95 9.95 0 0 1-1.523-5.314c0-5.512 4.486-9.998 10.003-9.998 2.671 0 5.181 1.04 7.07 2.93 1.888 1.888 2.927 4.399 2.927 7.069 0 5.513-4.486 10.001-10.002 10.001zM16.85 13.91c-.266-.134-1.576-.777-1.82-.865-.243-.09-.422-.134-.6.134-.177.266-.688.865-.843 1.04-.155.178-.31.2-.577.067-.266-.134-1.127-.415-2.147-1.326-.793-.707-1.33-1.581-1.485-1.848-.155-.266-.017-.41.117-.543.122-.12.266-.31.4-.466.133-.155.177-.266.266-.443.09-.177.044-.332-.022-.466-.067-.134-.6-1.44-.82-1.972-.216-.518-.435-.447-.6-.456-.155-.008-.332-.008-.51-.008-.177 0-.465.066-.71.332-.243.266-.93.908-.93 2.215 0 1.306.953 2.568 1.085 2.745.133.177 1.876 2.864 4.545 4.015.635.274 1.13.438 1.517.561.64.204 1.22.175 1.68.107.513-.077 1.576-.643 1.798-1.263.22-.62.22-1.152.155-1.263-.067-.11-.244-.177-.51-.31z" />
-  </svg>
-);
-
-const ICON_MAP: Record<string, any> = {
-  Github,
-  Linkedin,
-  Instagram,
-  Facebook,
-  Mail,
-  Phone,
-  Whatsapp: WhatsappIcon,
-};
-
-// Each platform's official brand color
-const BRAND_COLORS: Record<string, string> = {
-  Email:     '#5EEAD4',
-  Phone:     '#5EEAD4',
-  WhatsApp:  '#25D366',
-  GitHub:    '#ffffff',
-  LinkedIn:  '#0A66C2',
-  Instagram: '#E1306C',
-  Facebook:  '#1877F2',
-};
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -169,9 +134,29 @@ export default function Contact() {
                 <span>PROJECTS_EMAIL</span>
                 <a 
                   href="mailto:framehex@gmail.com"
-                  className="text-white hover:text-cyan-accent transition-colors font-semibold cursor-pointer"
+                  className="direct-contact-link transition-colors font-semibold cursor-pointer"
                 >
                   framehex@gmail.com
+                </a>
+              </div>
+              <div className="flex justify-between border-b border-white/5 pb-2">
+                <span>PROJECTS_PHONE</span>
+                <a 
+                  href="tel:+923078908351"
+                  className="direct-contact-link transition-colors font-semibold cursor-pointer"
+                >
+                  +92 307 8908351
+                </a>
+              </div>
+              <div className="flex justify-between border-b border-white/5 pb-2">
+                <span>PROJECTS_WHATSAPP</span>
+                <a 
+                  href="https://wa.me/923078908351"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whatsapp-direct-link transition-colors font-semibold cursor-pointer"
+                >
+                  +92 307 8908351
                 </a>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-2">
@@ -182,38 +167,6 @@ export default function Contact() {
                 <span>TIME_COORDINATE</span>
                 <span className="text-white">UTC-7 (Pacific Standard)</span>
               </div>
-            </div>
-          </div>
-
-          {/* Social Channels Link List */}
-          <div className="space-y-4 pt-8 border-t border-white/5">
-            <h3 className="font-mono text-[10px] tracking-wider text-white/30 uppercase">
-              VERIFIED_ASSET_CHANNELS
-            </h3>
-            
-            <div className="flex flex-col gap-2">
-              {SOCIAL_LINKS.map((link) => {
-                const IconComp = ICON_MAP[link.icon] || Github;
-                const brandColor = BRAND_COLORS[link.name] || '#5EEAD4';
-                return (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ '--brand': brandColor } as React.CSSProperties}
-                    className={`social-link flex items-center justify-between p-3 rounded-none bg-white/[0.015] border border-white/5 hover:bg-white/[0.03] text-white/60 transition-all text-xs font-mono group ${
-                      link.name === 'WhatsApp' ? 'social-link-whatsapp' : ''
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <IconComp className="social-icon w-4 h-4 text-white/30 transition-colors duration-300" />
-                      <span className="social-label transition-colors duration-300">{link.name.toUpperCase()}</span>
-                    </div>
-                    <ExternalLink className="social-arrow w-3.5 h-3.5 text-white/10 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                );
-              })}
             </div>
           </div>
         </div>
