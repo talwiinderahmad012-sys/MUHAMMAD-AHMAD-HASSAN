@@ -279,6 +279,9 @@ export const SERVICES: Service[] = [
 ];
 
 export const SOCIAL_LINKS = [
+  { name: 'Email', url: 'mailto:framehex@gmail.com', icon: 'Mail' },
+  { name: 'Phone', url: 'tel:+923078908351', icon: 'Phone' },
+  { name: 'WhatsApp', url: 'https://wa.me/923078908351', icon: 'Whatsapp' },
   { name: 'GitHub', url: 'https://github.com/talwiinderahmad012-sys/MUHAMMAD-AHMAD-HASSAN', icon: 'Github' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/muhammad-ahmad-hassan-449a4b40b/', icon: 'Linkedin' },
   { name: 'Instagram', url: 'https://www.instagram.com/ahmadhassan_33/', icon: 'Instagram' },
