@@ -168,10 +168,10 @@ export default function Contact() {
               <div className="flex justify-between border-b border-white/5 pb-2">
                 <span>PROJECTS_EMAIL</span>
                 <a 
-                  href="mailto:hexframe@gmail.com"
+                  href="mailto:framehex@gmail.com"
                   className="text-white hover:text-cyan-accent transition-colors font-semibold cursor-pointer"
                 >
-                  hexframe@gmail.com
+                  framehex@gmail.com
                 </a>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-2">

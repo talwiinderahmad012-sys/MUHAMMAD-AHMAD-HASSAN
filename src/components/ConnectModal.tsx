@@ -139,12 +139,12 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
 
               {/* Quick email row */}
               <a
-                href="mailto:hexframe@gmail.com"
+                href="mailto:framehex@gmail.com"
                 className="flex items-center justify-between p-3 rounded-none bg-white/[0.02] border border-white/10 hover:border-[#F5A524]/40 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-[#F5A524]" />
-                  <span className="font-mono text-xs text-white/70">hexframe@gmail.com</span>
+                  <span className="font-mono text-xs text-white/70">framehex@gmail.com</span>
                 </div>
                 <ArrowUpRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/60 transition-colors" />
               </a>
