@@ -204,7 +204,9 @@ export default function Contact() {
             </h3>
             
             <div className="flex flex-col gap-2">
-              {SOCIAL_LINKS.map((link) => {
+              {SOCIAL_LINKS.filter(
+                (link) => !['Email', 'Phone', 'WhatsApp'].includes(link.name)
+              ).map((link) => {
                 const IconComp = ICON_MAP[link.icon] || Github;
                 const brandColor = BRAND_COLORS[link.name] || '#5EEAD4';
                 return (
