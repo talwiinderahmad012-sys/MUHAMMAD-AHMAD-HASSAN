@@ -148,7 +148,7 @@ export default function Contact() {
                   +92 307 8908351
                 </a>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-2">
+              <div className="flex justify-between">
                 <span>PROJECTS_WHATSAPP</span>
                 <a 
                   href="https://wa.me/923078908351"
@@ -158,14 +158,6 @@ export default function Contact() {
                 >
                   +92 307 8908351
                 </a>
-              </div>
-              <div className="flex justify-between border-b border-white/5 pb-2">
-                <span>GATEWAY_NODE</span>
-                <span className="text-cyan-accent font-semibold">SSL_SECURE_PORT_3000</span>
-              </div>
-              <div className="flex justify-between">
-                <span>TIME_COORDINATE</span>
-                <span className="text-white">UTC-7 (Pacific Standard)</span>
               </div>
             </div>
           </div>
