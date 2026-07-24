@@ -12,11 +12,23 @@
 @theme {
   --font-display: "Deltha", "Space Grotesk", sans-serif;
   --font-sans: "Deltha", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-mono: "Deltha", "JetBrains Mono", monospace;
   
   --color-dark-bg: #0B0E14;
   --color-cyan-accent: #5EEAD4;
   --color-amber-accent: #F5A524;
+}
+
+* {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6, .font-display, [class*="font-display"] {
+  font-family: var(--font-display);
+}
+
+code, pre, .font-mono, [class*="font-mono"] {
+  font-family: var(--font-mono);
 }
 
 /* Custom scrollbar */
